@@ -8,7 +8,8 @@ Pada soal ini 'grep' digunakan karena 'AWK' tidak diperbolehkan untuk mengambil 
 # Penjelasan Soal 1. A (text.txt)<br/>
 Pada soal ini kita perlu informasi dari syslog.log berupa jenis log (ERROR/INFO), pesan log, dan username.<br/>
 `grep -oP '(?<=ticky: ).*' syslog.log > text.txt`<br/>
-Kita menggunakan grep untuk melakukan ini. -oP berarti "matching only" sehingga hanya informasi yang diperlukan muncul dan (?<ticky: ) berarti kita hanya mengambil teks setelah "ticky: " muncul.<br/>
+Kita menggunakan grep untuk melakukan ini. -oP berarti "matching only" sehingga hanya informasi yang diperlukan muncul dan<br/>
+(?<ticky: ) berarti kita hanya mengambil teks setelah "ticky: " muncul.<br/>
 ![Capture](https://user-images.githubusercontent.com/7587945/113503772-22e79980-955e-11eb-94fc-f6095e8a8439.PNG)<br/>
 # Penjelasan Soal 1. B dan 1. D (error_message.csv)<br/>
 Pada soal ini kita perlu menyimpan informasi berupa error message dan error count ke error_message.csv.<br/>
