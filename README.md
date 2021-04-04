@@ -60,3 +60,6 @@ pada soal 2.A dijelaskan bahwasannya jika ada nilai terbesar yang sama maka nila
 # Kendala Soal 2. A
 tidak ada kendala major yang dialami, hanya sekedar kendala minor seperti typo dan salah penempatan variabel
 # Penjelasan Soal 2. B
+
+
+<hr>
