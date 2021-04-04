@@ -58,10 +58,208 @@ pada soal 2.A dijelaskan bahwasannya jika ada nilai terbesar yang sama maka nila
 #A
    printf("Transaksi terakhir dengan profit percentage terbesar yaitu %s dengan persentase %.2f%%\n\n",maxrow,maxp);
 ```
+# Revisi Soal 2. A
+tidak ada kendala major yang dialami, hanya sekedar kendala minor seperti typo dan salah penempatan variabel  
 # Kendala Soal 2. A
-tidak ada kendala major yang dialami, hanya sekedar kendala minor seperti typo dan salah penempatan variabel
+terdapat sedikit kendala dimana output input dan program yang dibuat tidak sesuai dengan output yang diharapkan dimana `maxrow` di laptop pc Afifan memiliki keanehan yang sebelumnya isi variabel tersebut 9966 dan bilamana program ini dikerjakan di pc lainnya maka menunujakan nilai 9952.  
 # Penjelasan Soal 2. B
+Pada soal nomor 2 yang B kita diminta untuk mencari daftar nama `Customer` yang melakukan transaksi pada tahun 2017 dan terbatas pada `City` dimana variable tersebut haruslah "Albuquerque".
+```Shell
+#B
+{
+	orderid = $2
+	city = $10
+	if (orderid != "Order ID" && city != "City")
+	{ 
+	  if(substr($2,4,4) == 2017 && $10 == "Albuquerque"){
+		sama = 0;
+		for(i = 0; i < jumlah2017 ; i++){
+		  if(customer[i] == $7) sama = 1;
+		}
+		if(sama == 0) customer[jumlah2017++] = $7;
+	  }
+	}
+}
+```  
+untuk potongan kode diatas ditunjukan bahwasannya memasukan variabel `orderid` dan `city` sebagai pengecehkan agar baris pertama sebagai nama kolom tidak dianggap nantinya. Lalu kita melakukan pengechekan menggunakan `substr` diamana itu digunakan untuk mengechek string yang sesuai dengan indexing dari array string tersebut, kebetulan kita hanya perlu mengecheck 4 digit berikutnya dari `Order ID` yang hal tersebut merupakan tahun sebuah orderan itu dibuat. Dan kita tambahi AND untuk mngechek lagi pada kolom `City` apakah terdapat kota bernama "Albuquerque", jika pengecheckan suskes maka akan masuk ke perulangan dimana memasukan kedalam array daftar nama tersebut. untuk perulangannya sendiri saya melakukan sedikit tambhan bilamana ada nama lebih dari satu maka akan trigger sebuah flag yang dimana nantinya nama tersebut tidak akan ter-output lagi. Lalu ditampilkan menggunakan potongan kode dibawah ini.  
+```Shel
+#B
+   printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \n");
+  for(i = 0 ; i < jumlah2017; i++) printf("%s\n",customer[i]);
+  printf("\n");
+```  
+# Kendala Soal 2. B
+tidak ada kendala selama pengerjaan dan sukses, namun kami diminta untuk mengganti code sebelumnya karena menggunakan `/2017/` karena hal tersebut mengechek keseluruhan data meskipun itu bukan dari target kolom maupun baris.  
+# Revisi Soal 2. B
+mengganti potongan kode sebelumnya yaitu berikut dibawah ini.
+```Shell
+/2017/ {
+  if($10 == "Albuquerque"){
+    samename = 0;
+    for(itr = 0; itr < jml2017 ; itr++){
+      if(custname[itr] == $7) samename = 1;
+    }
+    if(samename == 0) custname[jml2017++] = $7;
+  }
+}
+```  
+# Penjelasan Soal 2. C
+Pada soal ini kita diminta untuk mencari dan menampilkan jenis dari 3 `Segment Customer` yang dimana terdapat 3 jenis yaitu _Home Office_, _Corporate_, _Consumer_ dengan jumlah paling sedikit transaksinya.  
+```Shell
+#C
+/Home Office/ { homeOf++ }
+/Corporate/ { corporate++ }
+/Consumer/ { consumer++ }
+```   
+kode diatas untuk menghitung data yang ada dari ketiga segment yang muncul. jika salah satu data muncul maka akan memberi nilai +1 pada variabel terkait lalu untuk pengechekan dan output kodenya akan ditampilkan dibawah ini.  
+```Shel
+#C
+  if(homeOf < corporate){
+    if(homeOf < consumer) { minseg = "Home Office"; mintotseg = homeOf; }
+    else {minseg = "Customer"; mintotseg = consumer; }
+  }
+  else{
+    if(corporate < consumer) { minsegt = "Corporate"; mintotseg = corp; }
+    else {minseg = "Customer"; mintotseg = consumer; }
+  }
+  printf("Tipe segment customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n",minseg,mintotseg);
+```  
+Kode diiatas merupakan sebuah percabangan sederhana diamana yang akan mengecheck apakah ketiga variabel tersebut lebih kecil dari yang lainnya.  
+# Kendala Soal 2. C
+tidak ada kendala dalam pengerjaan soal tersebut.  
+# Penjelasan Soal 2. D
+Pada Soal ini tidak bereda jauh dari soal C sebelumnya. Yaitu kita diminta mencari dan menampilkan `Region` dangan total `Profit` paling sedikit.
+```Shell
+#D
+/Central/ { central += $21 }
+/East/ { east += $21 }
+/South/ { south += $21 }
+/West/ { west += $21 }
+```  
+kode diatas sama hampir persis dari kode dari Soal C namun dalam keempat variabel tersbut, kita menjumlahkan seluruh `Profit` yang ada pada `Region` terkait. Yaitu dengan menjumlahkan pada kolom `$21` pada variabel penampungnya. Output akan dikeluarkan dengan beberapa dengan code sebagai berikut.  
+```Shell
+#D 
+  if(central < east){
+    if(central < south){
+      if(central < west){ minregion = "Central"; profregion = central; }
+      else { minregion = "West"; profregion = west; }
+    }
+    else {
+      if(south < west) { minregion = "South"; profregion = south; }
+      else { minregion = "West"; profregion = west; }
+    }
+  }
+  else {
+    if(east < south) {
+      if(east < west) { minregion = "East"; profregion = east; }
+      else { minregion = "West"; profregion = west; }
+    }
+    else {
+      if(south < west) { minregion = "South"; profregion = south; }
+      else { minregion = "West"; profregion = west; }
+    }
+  }
+  printf("\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %f\n",minregion,profregion);
+}
+```  
+kode diatas merupakan percabangan sederhana dimana akan mencari nilai terkecilnya. percabangan tersebut mirip seperti soal C namun lebih banyak jumlah percabangannya.  
+# Kendala Soal 2. D
+Kendala pada Soal D ini mirip seperti Soal A dimana code program ini tidak berjalan sesuai dengan apa yang diharapkan karena anehan dari laptop Afifan ini. sebelumnya hasil ouput `Profit` eksekusi prgram di laptop ini adalah **39250,000000** dimana itu merupakan penjumlahan dalam integer yang seharsunya `Profit` dalam data yang telah disediakan merupakan bilangan berkoma. Program code ini berjalan baik di komputer lainnya dimana mendapatkan nilai `Profit` sebesar **39725,729100** dimana itu merupakan penjumlahan _float_/_double_ yang berbeda dari penjumlahan integer.  
+# Penjelasan Soal 2. E
+Soal ini merupakan tugas iuntuk menjalankan scriptcode untuk menyelesaikan problem yang ada pada soal 2. A-D dengan menghasilkan file baru bernama `hasil.txt` yang berisi rangkuman inforamasi dengan tempalte yang telash disediakan. Scriptcode tersebut sebagai berikut.  
+```Shell
+#!/bin/bash
 
+# Soal No 2
+awk 'BEGIN { FS = "\t" ;}
+#A
+{ tmpp = ($21/($18-$21))*100;
+  if(maxp<tmpp) {
+    maxp = tmpp;
+    maxid = $2;
+    maxrow = $1;
+  }
+  if(maxp == tmpp) {
+    if(maxrow<$1) {
+      maxid = $2; 
+      maxrow = $1;
+    }
+  }
+}
+#B
+{
+	orderid = $2
+	city = $10
+	if (orderid != "Order ID" && city != "City")
+	{ 
+	  if(substr($2,4,4) == 2017 && $10 == "Albuquerque"){
+		sama = 0;
+		for(i = 0; i < jumlah2017 ; i++){
+		  if(customer[i] == $7) sama = 1;
+		}
+		if(sama == 0) customer[jumlah2017++] = $7;
+	  }
+	}
+}
+#C
+/Home Office/ { homeOf++ }
+/Corporate/ { corporate++ }
+/Consumer/ { consumer++ }
+#D
+/Central/ { central += $21 }
+/East/ { east += $21 }
+/South/ { south += $21 }
+/West/ { west += $21 }
+END { 
+#A
+   printf("Transaksi terakhir dengan profit percentage terbesar yaitu %s dengan persentase %.2f%%\n\n",maxrow,maxp);
+   
+#B
+   printf("Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \n");
+  for(i = 0 ; i < jumlah2017; i++) printf("%s\n",customer[i]);
+  printf("\n");
+#C
+  if(homeOf < corporate){
+    if(homeOf < consumer) { minseg = "Home Office"; mintotseg = homeOf; }
+    else {minseg = "Customer"; mintotseg = consumer; }
+  }
+  else{
+    if(corporate < consumer) { minsegt = "Corporate"; mintotseg = corp; }
+    else {minseg = "Customer"; mintotseg = consumer; }
+  }
+  printf("Tipe segment customer yang penjualannya paling sedikit adalah %s dengan %d transaksi.\n",minseg,mintotseg);
+  
+#D 
+  if(central < east){
+    if(central < south){
+      if(central < west){ minregion = "Central"; profregion = central; }
+      else { minregion = "West"; profregion = west; }
+    }
+    else {
+      if(south < west) { minregion = "South"; profregion = south; }
+      else { minregion = "West"; profregion = west; }
+    }
+  }
+  else {
+    if(east < south) {
+      if(east < west) { minregion = "East"; profregion = east; }
+      else { minregion = "West"; profregion = west; }
+    }
+    else {
+      if(south < west) { minregion = "South"; profregion = south; }
+      else { minregion = "West"; profregion = west; }
+    }
+  }
+  printf("\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %f\n",minregion,profregion);
+}
+' Laporan-TokoShiSop.tsv > hasil.txt
+```  
+Scriptcode diatas dijalankan dengan menggunkan printah bash pada terminal dan menghasilkan file baru yaitu `hasil.txt`. File berisi sebagai berikut.
+![hasil](https://user-images.githubusercontent.com/75328763/113511597-bd5dd200-958a-11eb-910d-2702e7f03131.jpg)
+# Kendala dalam Output 2. E
+seperti kendala pada soal sebelumnya yang dikarenakan keanehan laptop Afifan ini, yaitu hasil Outputnya sebagai berikut.
+![image](https://user-images.githubusercontent.com/75328763/113511666-280f0d80-958b-11eb-8fb9-6770c969febc.png)
+hal tersebut tidak berefek pada eksekusi kode program di PC lainnya.
 
 <hr>
 
