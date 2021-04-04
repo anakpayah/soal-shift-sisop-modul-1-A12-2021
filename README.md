@@ -254,12 +254,12 @@ END {
 }
 ' Laporan-TokoShiSop.tsv > hasil.txt
 ```  
-Scriptcode diatas dijalankan dengan menggunkan printah bash pada terminal dan menghasilkan file baru yaitu `hasil.txt`. File berisi sebagai berikut.
-![hasil](https://user-images.githubusercontent.com/75328763/113511597-bd5dd200-958a-11eb-910d-2702e7f03131.jpg)
+Scriptcode diatas dijalankan dengan menggunkan printah bash pada terminal dan menghasilkan file baru yaitu `hasil.txt`. File berisi sebagai berikut.  
+![hasil](https://user-images.githubusercontent.com/75328763/113511597-bd5dd200-958a-11eb-910d-2702e7f03131.jpg)  
 # Kendala dalam Output 2. E
-seperti kendala pada soal sebelumnya yang dikarenakan keanehan laptop Afifan ini, yaitu hasil Outputnya sebagai berikut.
-![image](https://user-images.githubusercontent.com/75328763/113511666-280f0d80-958b-11eb-8fb9-6770c969febc.png)
-hal tersebut tidak berefek pada eksekusi kode program di PC lainnya.
+seperti kendala pada soal sebelumnya yang dikarenakan keanehan laptop Afifan ini, yaitu hasil Outputnya sebagai berikut.  
+![image](https://user-images.githubusercontent.com/75328763/113511666-280f0d80-958b-11eb-8fb9-6770c969febc.png)  
+hal tersebut tidak berefek pada eksekusi kode program di PC lainnya.  
 
 <hr>
 
