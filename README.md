@@ -64,3 +64,31 @@ tidak ada kendala major yang dialami, hanya sekedar kendala minor seperti typo d
 
 
 <hr>
+
+# Jawaban Soal 3. A <br/>
+![Capture](https://user-images.githubusercontent.com/7587945/113505184-714d6600-9567-11eb-9ba5-8410d0b23845.PNG) <br/>
+![Capture](https://user-images.githubusercontent.com/7587945/113505636-55978f00-956a-11eb-83e7-7ebe1905b386.PNG) <br/>
+Pada soal ini kita perlu mendownload 23 gambar dari suatu url, hapus gambar duplikat dan rename menjadi Koleksi_XX <br/>
+# Penjelasan Soal 3. A <br/>
+`wget https://loremflickr.com/320/240/kitten -a foto.log` <br/>
+Command ini digunakan untuk mendownload file dari url dan tambahkan lognya ke foto.log <br/>
+`find -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 | awk -F/ '{print $2}' > dupes.txt` <br/>
+Command find akan menampilkan hash MD5 dari file seperti ini <br/>
+![Capture](https://user-images.githubusercontent.com/7587945/113505427-f2f1c380-9568-11eb-95a7-5ba829c26bab.PNG) <br/>
+Teks tersebut disort dan hanya nama file duplikat akan muncul dan dipisah dengan newline. Contohnya jika kitten1 dan kitten2 merupakan duplikat dan kitten3 dan kitten 5 juga duplikat, maka yang muncul pada dupes.txt adalah <br/>
+kitten1<br/>
+kitten2<br/>
+<br/>
+kitten3<br/>
+kitten4<br/>
+Dari teks dupes.txt tersebut, file dengan nama di line pertama akan diremove.<br/>
+`mv $(ls -l | awk '{print $NF}' | grep -m1 "kitten") Koleksi_$j` <br/>
+Command ini digunakan untuk merename file menjadi Koleksi_XX.
+
+# Kendala Soal 3. A <br/>
+Seperti pada screenshot awal, tidak semua file direname menjadi Koleksi_XX. Ternyata terdapat masalah pada command loop for<br/>
+`for ((j=1; j<=$(ls -l | awk '{print $NF}' | grep "kitten" | wc -l); j=j+1))`<br/>
+dimana angka setelah "for<=" dapat berubah saat loop berjalan. Untuk memperbaiki hal tersebut, variabel baru dapat dibuat supaya program berjalan seperti yang seharusnya.<br/>
+`n=$(ls -l | awk '{print $NF}' | grep "kitten" | wc -l)`<br/>
+`for ((j=1; j<=n; j=j+1))`<br/>
+![Capture](https://user-images.githubusercontent.com/7587945/113505620-40bafb80-956a-11eb-952e-02505810067f.PNG)
