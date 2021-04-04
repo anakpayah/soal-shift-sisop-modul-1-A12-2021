@@ -2,6 +2,7 @@
 Repo github soal shift modul 1 sisop semester genap tahun 2021 
 
 <hr>
+
 # Jawaban No 1.<br/>
 ![Capture](https://user-images.githubusercontent.com/7587945/113503264-ed8d7c80-955a-11eb-976a-d500bdc8b36e.PNG)<br/>
 Pada soal ini 'grep' digunakan karena 'AWK' tidak diperbolehkan untuk mengambil informasi dari file 'syslog.log' berdasarkan informasi yang diinginkan.<br/>
