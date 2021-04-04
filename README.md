@@ -3,7 +3,29 @@ Repo github soal shift modul 1 sisop semester genap tahun 2021
 
 <hr>
 # Jawaban No 1.
-
+![Capture](https://user-images.githubusercontent.com/7587945/113503264-ed8d7c80-955a-11eb-976a-d500bdc8b36e.PNG)
+Pada soal ini 'grep' digunakan karena 'AWK' tidak diperbolehkan untuk mengambil informasi dari file 'syslog.log' berdasarkan informasi yang diinginkan.
+# Penjelasan Soal 1. A (text.txt)
+Pada soal ini kita perlu informasi dari syslog.log berupa jenis log (ERROR/INFO), pesan log, dan username.
+`grep -oP '(?<=ticky: ).*' syslog.log > text.txt`
+Kita menggunakan grep untuk melakukan ini. -oP berarti "matching only" sehingga hanya informasi yang diperlukan muncul dan (?<ticky: ) berarti kita hanya mengambil teks setelah
+"ticky: " muncul.
+![Capture](https://user-images.githubusercontent.com/7587945/113503772-22e79980-955e-11eb-94fc-f6095e8a8439.PNG)
+# Penjelasan Soal 1. B dan 1. D (error_message.csv)
+Pada soal ini kita perlu menyimpan informasi berupa error message dan error count ke error_message.csv.
+`grep -oP '(?<=ERROR ).*(?= \()' syslog.log | sort -u > temp1.txt`
+Kita mengambil teks setelah "ERROR " muncul, tetapi sebelum "(", yaitu error messagenya. Kemudian teks tersebut disort yang unique sehingga akan terlihat seperti ini.
+![Capture](https://user-images.githubusercontent.com/7587945/113504149-6c38e880-9560-11eb-852a-48020af4d41d.PNG)
+`echo "$(grep -m1 "" temp1.txt),$(grep "$(grep -m1 "" temp1.txt)" syslog.log | wc -l)" >> error.txt`
+Command ini akan menampilkan error message (mengambil line pertama dari temp1.txt), error count (wc -l) dan menyimpannya ke error.txt.
+`echo "$(cat error.txt | sort -t, -k 2 -n -r)" >> error_message.csv`
+Setelah error.txt lengkap, text file tersebut disort berdasarkan numerical dan disimpan ke error_message.csv.  
+# Penjelasan Soal 1. C dan 1. E (user_statistic.csv)
+Soal ini mirip dengan soal 1. B dan 1. D. Kita perlu informasi Username, INFO count, ERROR count.
+`grep -oP '(\().*(?=\))' syslog.log | sort -u | cut -c 2- > temp1.txt`
+Kita mengambil teks setelah "(" dan sebelum ")" dan sort unique, tetapi yang ditampil akan menjadi "(username" sehingga perlu dicut.
+`echo "$(grep -m1 "" temp1.txt),$(grep -w "INFO" syslog.log | grep -w "$(grep -m1 "" temp1.txt)" | wc -l),$(grep -w "ERROR" syslog.log | grep -w "$(grep -m1 "" temp1.txt)" | wc -l)" >> user_statistic.csv`
+Command ini mirip dengan command di nomor sebelumnya, tetapi perlu difilter dulu menjadi "ERROR" atau "INFO" sebelum difilter lagi berdasarkan username.
 
 <hr>
 
