@@ -29,7 +29,7 @@ Command ini mirip dengan command di nomor sebelumnya, tetapi perlu difilter dulu
 
 <hr>
 
-# Jawaban No 2.
+# Jawaban No 2. 
 ![ss_Laporan-TokoShiSop](https://user-images.githubusercontent.com/75328763/113485508-0bfe6400-94d8-11eb-9d32-64c6a525112c.png)
 Masalah pada nomer 2 ini deselesaikan menggunakan program `AWK`.
 pada nomor 2 ini kita diminta untuk membuat rangkuman informasi yang diinginkan dari file `Laporan-TokoShiSop.tsv` sesuai dengan soal yang diberikan. Untuk itu pengerjaan soal ini untuk menentukan file seperator (pemisah antar datanya) yang digunakan pada file yang berisi data yang akan diperoses menggunakan AWK. Kode di bawah berikut  untuk mendefinisikan file seperator  
